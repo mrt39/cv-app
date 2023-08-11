@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  
+}
+
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+#app {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+#app{
+  display: grid;
+  grid-template-columns: 5fr 1fr 5fr;
+}
+
+#personalDetailsDisplay {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+
+
+
