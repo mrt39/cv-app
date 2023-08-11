@@ -23,12 +23,21 @@ body {
 #app{
   display: grid;
   grid-template-columns: 5fr 1fr 5fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+#educationInput {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: 20px;
 }
 
 #personalDetailsDisplay {
   grid-column-start: 3;
   grid-column-end: 4;
 }
+
+
 
 
 

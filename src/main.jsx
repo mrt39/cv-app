@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import Test1 from './Test1.jsx'
-import Display from './Display.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

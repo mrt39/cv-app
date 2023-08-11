@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import PersonalDetailsInputs from './Personaldetails.jsx'
+import EducationInput from './Educationinput.jsx'
 
 function App() {
   //setting up states
@@ -13,6 +14,14 @@ function App() {
     address: "",
   });
 
+  const [educationValue, setEducation] = useState({
+    degree: "",
+    school: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+  });
+
 
   //change function for states
   //using a single state and a single state changer function for multiple components.
@@ -21,25 +30,49 @@ function App() {
     const value = event.target.value;
     setPersonalDetail({
       ...personalDetailValue,
+      //name for each input field is written on html, in Personaldetails.jsx
+      [event.target.name]: value
+    });
+  }
+
+  function educationChange (event){
+    const value = event.target.value;
+    setEducation({
+      ...educationValue,
       [event.target.name]: value
     });
   }
 
 
 
+  function educationFormSubmit (event){
+    //prevent default
+    //append it to a variable
+  }
+
+
   return (
     <div id ="app">
-      <div id="personalDetails">
-
-      <PersonalDetailsInputs.NameInput value={personalDetailValue.name} onChange = {personalDetailChange} /> 
+      <div id="personalDetailsInput">
+      <PersonalDetailsInputs 
+        name = {personalDetailValue.name}
+        email = {personalDetailValue.email}
+        phone = {personalDetailValue.phone}
+        address = {personalDetailValue.address}
+        onChange = {personalDetailChange} /> 
       <br /><br />
-      <PersonalDetailsInputs.EmailInput value={personalDetailValue.email} onChange = {personalDetailChange} /> 
-      <br /><br />
-       <PersonalDetailsInputs.PhoneInput value={personalDetailValue.phone} onChange = {personalDetailChange} />
-      <br /><br />
-      <PersonalDetailsInputs.AddressInput value={personalDetailValue.address} onChange = {personalDetailChange} /> 
       </div>
-
+      <div id="educationInput">
+      <EducationInput 
+        degree = {educationValue.degree}
+        school = {educationValue.school}
+        startDate = {educationValue.startDate}
+        endDate = {educationValue.endDate}
+        location =  {educationValue.location}
+        onChange = {educationChange} 
+        onSubmit = {educationFormSubmit} 
+        /> 
+      </div>
 
       <div id="personalDetailsDisplay">
           <h1>{personalDetailValue.name}</h1>

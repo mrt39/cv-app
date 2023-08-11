@@ -1,67 +1,45 @@
-
-function NameInput({value, onChange}) {
-
+function PersonalDetailsInputs ({onChange, name, email, phone, address}) {
     return (
-        <>
+    <>
+    <h2>Personal Details</h2>
         <label>Full Name </label>
         <br />
           <input
             type="text"
             name="name"
-            value={value}
+            value={name}
             onChange={onChange}
           />
-        </>
-    )
-}
-
-
-function EmailInput({value, onChange}) {
-
-    return (
-        <>
+        <br /><br />
         <label>E-mail</label>
         <br />
           <input
             type="email"
             name="email"
-            value={value}
+            value={email}
             onChange={onChange}
           />
-        </>
-    )
-}
-
-function PhoneInput({value, onChange}) {
-
-    return (
-        <>
+        <br /><br />
         <label>Phone Number</label>
         <br />
           <input
             type="tel"
             name="phone"
-            value={value}
+            value={phone}
             onChange={onChange}
           />
-        </>
-    )
-}
-
-function AddressInput({value, onChange}) {
-
-    return (
-        <>
+        <br /><br />
         <label>Address</label>
         <br />
           <input
             type="tel"
             name="address"
-            value={value}
+            value={address}
             onChange={onChange}
           />
-        </>
+    </>
+        
     )
 }
 
-export default {NameInput, EmailInput, PhoneInput, AddressInput}
+export default PersonalDetailsInputs
