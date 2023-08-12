@@ -32,6 +32,13 @@ body {
   margin: 20px;
 }
 
+.educationLinesLi{
+  display: flex;
+  border: 1px black solid;
+  margin: 3px;
+  justify-content: space-evenly;
+}
+
 #personalDetailsDisplay {
   grid-column-start: 3;
   grid-column-end: 4;
@@ -42,6 +49,9 @@ body {
   grid-column-end: 4;
   margin: 20px;
 }
+
+
+
 
 
 

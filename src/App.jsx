@@ -55,7 +55,7 @@ function App() {
 
   function selectEducation (schoolName){
     const selectedEducation = educationLines.find((element) => element.school === schoolName);
-    //change the educationValue state, which dictates what's being displayed on the form!
+    //change the educationValue state, which dictates what's being displayed on the form
     setEducation(selectedEducation)  
   }
 
@@ -94,6 +94,14 @@ function App() {
     }
   }
 
+  function deleteEducation (schoolName){
+    //find the element with the clicked school name
+    const clickedSchool = educationLines.find((element) => element.school === schoolName); 
+    //remove it from the array (educationLines state, which is an array)
+    changeEducationLines(educationLines.filter(element => element !== clickedSchool)
+    )
+  }
+
   return (
     <div id ="app">
       <div id="personalDetailsInput">
@@ -115,10 +123,12 @@ function App() {
         <div>
         {/* show the list of education lines that have been added by the user */}
         {educationLines.map(education => 
-        <li 
+        <li className='educationLinesLi'
         onClick = {() => selectEducation(education.school)} 
         key={education.school}>
         <h3>{education.school}</h3>
+        {/* delete button */}
+        <button onClick = {() => deleteEducation(education.school)}>X</button>
         </li>
         )}
         <EducationInput 

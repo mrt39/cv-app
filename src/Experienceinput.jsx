@@ -1,23 +1,23 @@
-function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDate, location}) {
+function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDate, location, description}) {
 
     return (
 
     <form onSubmit={onSubmit}>
-            <label>Degree </label>
+            <label>Company Name </label>
             <br />
             <input
                 type="text"
                 name="degree"
-                value={degree}
+                value={company}
                 onChange={onChange}
             />
             <br /><br />
-            <label>School</label>
+            <label>Position Title</label>
             <br />
             <input
                 type="text"
                 name="school"
-                value={school}
+                value={title}
                 onChange={onChange}
             />
             <br /><br />
@@ -48,10 +48,19 @@ function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDat
                 onChange={onChange}
             />
             <br /><br />
+            <label>Description</label>
+            <br />
+            <input
+                type="text"
+                name="location"
+                value={description}
+                onChange={onChange}
+            />
+            <br /><br />
             <input type="submit" value="Submit" />
         
     </form>
 
 )}
 
-export default EducationInputs;
+export default ExperienceInputs;
