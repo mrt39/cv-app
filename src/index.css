@@ -45,18 +45,33 @@ body {
   justify-content: space-evenly;
 }
 
-#personalDetailsDisplay {
+.experienceLinesLi{
+  display: flex;
+  border: 1px black solid;
+  margin: 3px;
+  justify-content: space-evenly;
+}
+#displayContainer{
   grid-column-start: 3;
-  grid-column-end: 4;
 }
 
-#educationDisplay {
-  grid-column-start: 3;
-  grid-column-end: 4;
+#personalDetailsDisplay {
   margin: 20px;
 }
 
+#educationDisplay {
 
+  margin: 20px;
+}
+
+#experienceDisplay {
+
+  margin: 20px;
+}
+
+#experienceDisplayList, #educationDisplayList{
+  list-style-type: none;
+}
 
 
 

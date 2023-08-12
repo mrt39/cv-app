@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import PersonalDetailsInputs from './Personaldetails.jsx'
 import EducationInput from './Educationinput.jsx'
+import ExperienceInput from './Experienceinput.jsx'
 
 function App() {
   //setting up states
@@ -22,10 +23,22 @@ function App() {
     location: "",
   });
 
+  const [experienceValue, setExperience] = useState({
+    company: "",
+    title: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    description: "",
+  });
+
   //a state for the education info user provides
   const [educationLines, changeEducationLines] = useState([]);
 
-  //open-close education tab
+  //a state for the experience info user provides
+  const [experienceLines, changeExperienceLines] = useState([]);
+
+  //open-close education and experience tabs
   const [tabActive, setActive] = useState(0);
 
   function tabToggle(index){
@@ -58,11 +71,27 @@ function App() {
     });
   }
 
+  function experienceChange (event){
+    const value = event.target.value;
+    setExperience({
+      ...experienceValue,
+      [event.target.name]: value
+    });
+  }
+
   function selectEducation (schoolName){
     const selectedEducation = educationLines.find((element) => element.school === schoolName);
     //change the educationValue state, which dictates what's being displayed on the form
     setEducation(selectedEducation)  
   }
+
+  function selectExperience (companyName){
+    const selectedExperience = experienceLines.find((element) => element.company === companyName);
+    //change the experienceValue state, which dictates what's being displayed on the form
+    setExperience(selectedExperience)  
+  }
+
+
 
   function educationFormSubmit (event){
     event.preventDefault()
@@ -99,11 +128,56 @@ function App() {
     }
   }
 
+  function experienceFormSubmit (event){
+    event.preventDefault()
+
+    //create an object with the submitted data
+    const myObject = {}
+    myObject.company = event.target.company.value
+    myObject.title = event.target.title.value
+    myObject.startDate = event.target.startDate.value
+    myObject.endDate = event.target.endDate.value
+    myObject.location = event.target.location.value
+    myObject.description = event.target.description.value
+
+    //check if the added school already exists in the array
+    var addedExperienceName = experienceLines.find((element) => element.company === event.target.company.value);
+    //if it exists, update the existing data
+    if (addedExperienceName){
+      //create a copy of the existing state 
+      const updatedExperienceList = [...experienceLines];
+      //find the same element
+      let addedExperience = updatedExperienceList.find((element) => element.company === event.target.company.value);
+      //update this element
+      addedExperience.company = event.target.company.value
+      addedExperience.title = event.target.title.value
+      addedExperience.startDate = event.target.startDate.value
+      addedExperience.endDate = event.target.endDate.value
+      addedExperience.location = event.target.location.value
+      addedExperience.description = event.target.description.value
+      //change the current state with the updated state
+      changeExperienceLines(updatedExperienceList)
+    }
+    else{
+    //if the submitted data does not exist, add it to the array of education lines
+    //add the object to the array
+    changeExperienceLines(experienceLines.concat(myObject))
+    }
+  }
+
   function deleteEducation (schoolName){
     //find the element with the clicked school name
     const clickedSchool = educationLines.find((element) => element.school === schoolName); 
     //remove it from the array (educationLines state, which is an array)
     changeEducationLines(educationLines.filter(element => element !== clickedSchool)
+    )
+  }
+
+  function deleteExperience (companyName){
+    //find the element with the clicked school name
+    const clickedExperience = experienceLines.find((element) => element.company === companyName); 
+    //remove it from the array (educationLines state, which is an array)
+    changeExperienceLines(experienceLines.filter(element => element !== clickedExperience)
     )
   }
 
@@ -122,7 +196,8 @@ function App() {
         {/* toggle isActive boolean on click */} 
         <h2 onClick ={() =>tabToggle(1)} >Education</h2>
 
-        {tabActive ===1 && /* showing this part only if isActive is true */
+        {tabActive ===1 && /* This is an inline if operator: https://legacy.reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
+        showing this part only if tabActive is 1 */
         /* react expects a single child within the ornary (if) operator, so we are wrapping this up with a div */
           <div>
           {/* show the list of education lines that have been added by the user */}
@@ -151,32 +226,34 @@ function App() {
         {/* toggle isActive boolean on click */} 
         <h2 onClick ={() =>tabToggle(2)} >Experience</h2>
 
-        {tabActive ===2 &&/* This is an inline if operator: https://legacy.reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
+        {tabActive ===2 &&/* 
         showing this part only if tabActive is 2 */
         /* react expects a single child within the ornary (if) operator, so we are wrapping this up with a div */
           <div>
           {/* show the list of education lines that have been added by the user */}
-          {educationLines.map(education => 
-          <li className='educationLinesLi'
-          onClick = {() => selectEducation(education.school)} 
-          key={education.school}>
-          <h3>{education.school}</h3>
+          {experienceLines.map(experience => 
+          <li className='experienceLinesLi'
+          onClick = {() => selectExperience(experience.company)} 
+          key={experience.company}>
+          <h3>{experience.company}</h3>
           {/* delete button */}
-          <button onClick = {() => deleteEducation(education.school)}>X</button>
+          <button onClick = {() => deleteExperience(experience.company)}>X</button>
           </li>
           )}
-          <EducationInput 
-            degree = {educationValue.degree}
-            school = {educationValue.school}
-            startDate = {educationValue.startDate}
-            endDate = {educationValue.endDate}
-            location =  {educationValue.location}
-            onChange = {educationChange} 
-            onSubmit = {educationFormSubmit} 
+          <ExperienceInput 
+            company = {experienceValue.company}
+            title = {experienceValue.title}
+            startDate = {experienceValue.startDate}
+            endDate = {experienceValue.endDate}
+            location =  {experienceValue.location}
+            description =  {experienceValue.description}
+            onChange = {experienceChange} 
+            onSubmit = {experienceFormSubmit} 
             /> 
             </div>
          }
       </div>
+      <div id="displayContainer">
       <div id="personalDetailsDisplay">
           <h1>{personalDetailValue.name}</h1>
           <h3>{personalDetailValue.email}</h3>
@@ -198,6 +275,24 @@ function App() {
           )}
         </ul>
       </div> 
+
+      <div id="experienceDisplay">
+        <ul id="experienceDisplayList">
+          {experienceLines.map(experience => 
+          <li key={experience.company}>
+            {experience.company}, {experience.title}
+            <br />
+            {experience.startDate}-{experience.endDate}
+            <br />
+            {experience.location}
+            <br />
+            {experience.description}
+            <br />
+          </li>
+          )}
+        </ul>
+      </div> 
+      </div>
 
 
        

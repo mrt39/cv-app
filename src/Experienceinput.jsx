@@ -7,7 +7,7 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <br />
             <input
                 type="text"
-                name="degree"
+                name="company"
                 value={company}
                 onChange={onChange}
             />
@@ -16,7 +16,7 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <br />
             <input
                 type="text"
-                name="school"
+                name="title"
                 value={title}
                 onChange={onChange}
             />
@@ -52,7 +52,7 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <br />
             <input
                 type="text"
-                name="location"
+                name="description"
                 value={description}
                 onChange={onChange}
             />
