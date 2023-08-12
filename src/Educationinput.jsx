@@ -1,7 +1,11 @@
+import { useState } from 'react'
+
+
 function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDate, location}) {
+
     return (
-    <form onsubmit={onSubmit}>
-        <h2>Education</h2>
+
+    <form onSubmit={onSubmit}>
             <label>Degree </label>
             <br />
             <input
@@ -48,9 +52,9 @@ function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDat
             />
             <br /><br />
             <input type="submit" value="Submit" />
-    </form>
         
-    )
-}
+    </form>
 
-export default EducationInputs
+)}
+
+export default EducationInputs;

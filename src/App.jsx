@@ -22,6 +22,16 @@ function App() {
     location: "",
   });
 
+  //a state for the education info user provides
+  const [educationLines, changeEducationLines] = useState([]);
+
+  //open-close education tab
+  const [educationTabActive, setIsActive] = useState(false);
+
+  function educationTabToggle(){
+      setIsActive(!educationTabActive)
+  }
+
 
   //change function for states
   //using a single state and a single state changer function for multiple components.
@@ -43,13 +53,46 @@ function App() {
     });
   }
 
-
-
-  function educationFormSubmit (event){
-    //prevent default
-    //append it to a variable
+  function selectEducation (schoolName){
+    const selectedEducation = educationLines.find((element) => element.school === schoolName);
+    //change the educationValue state, which dictates what's being displayed on the form!
+    setEducation(selectedEducation)  
   }
 
+  function educationFormSubmit (event){
+    event.preventDefault()
+
+    //create an object with the submitted data
+    const myObject = {}
+    myObject.degree = event.target.degree.value
+    myObject.school = event.target.school.value
+    myObject.startDate = event.target.startDate.value
+    myObject.endDate = event.target.endDate.value
+    myObject.location = event.target.location.value
+
+    //check if the added school already exists in the array
+    var addedSchoolName = educationLines.find((element) => element.school === event.target.school.value);
+    //if it exists, update the existing data
+    if (addedSchoolName){
+      //create a copy of the existing state 
+      const updatedEducationList = [...educationLines];
+      //find the same element
+      let addedSchool = updatedEducationList.find((element) => element.school === event.target.school.value);
+      //update this element
+      addedSchool.degree = event.target.degree.value
+      addedSchool.school = event.target.school.value
+      addedSchool.startDate = event.target.startDate.value
+      addedSchool.endDate = event.target.endDate.value
+      addedSchool.location = event.target.location.value
+      //change the current state with the updated state
+      changeEducationLines(updatedEducationList)
+    }
+    else{
+    //if the submitted data does not exist, add it to the array of education lines
+    //add the object to the array
+    changeEducationLines(educationLines.concat(myObject))
+    }
+  }
 
   return (
     <div id ="app">
@@ -63,17 +106,33 @@ function App() {
       <br /><br />
       </div>
       <div id="educationInput">
-      <EducationInput 
-        degree = {educationValue.degree}
-        school = {educationValue.school}
-        startDate = {educationValue.startDate}
-        endDate = {educationValue.endDate}
-        location =  {educationValue.location}
-        onChange = {educationChange} 
-        onSubmit = {educationFormSubmit} 
-        /> 
-      </div>
 
+      {/* toggle isActive boolean on click */} 
+      <h2 onClick ={educationTabToggle} >Education</h2>
+
+      {educationTabActive ? ( /* showing this part only if isActive is true */
+      /* react expects a single child within the ornary (if) operator, so we are wrapping this up with a div */
+        <div>
+        {/* show the list of education lines that have been added by the user */}
+        {educationLines.map(education => 
+        <li 
+        onClick = {() => selectEducation(education.school)} 
+        key={education.school}>
+        <h3>{education.school}</h3>
+        </li>
+        )}
+        <EducationInput 
+          degree = {educationValue.degree}
+          school = {educationValue.school}
+          startDate = {educationValue.startDate}
+          endDate = {educationValue.endDate}
+          location =  {educationValue.location}
+          onChange = {educationChange} 
+          onSubmit = {educationFormSubmit} 
+          /> 
+          </div>
+      ) : ("")}
+      </div>
       <div id="personalDetailsDisplay">
           <h1>{personalDetailValue.name}</h1>
           <h3>{personalDetailValue.email}</h3>
@@ -81,8 +140,24 @@ function App() {
           <h3>{personalDetailValue.address}</h3> 
       </div> 
 
+      <div id="educationDisplay">
+        <ul id="educationDisplayList">
+          {educationLines.map(education => 
+          <li key={education.school}>
+            {education.degree}, {education.school}
+            <br />
+            {education.startDate}-{education.endDate}
+            <br />
+            {education.location}
+            <br />
+          </li>
+          )}
+        </ul>
+      </div> 
+
+
        
-      </div>
+    </div>
   )
 } 
 
