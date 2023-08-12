@@ -23,7 +23,6 @@ body {
 #app{
   display: grid;
   grid-template-columns: 5fr 1fr 5fr;
-  grid-template-rows: 1fr 1fr 1fr;
 }
 
 #educationInput {
@@ -51,12 +50,27 @@ body {
   margin: 3px;
   justify-content: space-evenly;
 }
+
 #displayContainer{
   grid-column-start: 3;
 }
 
+#personalDetailContainer{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+h1{
+  padding-top: 30px;
+  margin-bottom: 10px;
+}
+i{
+  margin: 5px;
+}
 #personalDetailsDisplay {
   margin: 20px;
+  background-color: #0e374e;
+  color: white;
 }
 
 #educationDisplay {
@@ -71,6 +85,7 @@ body {
 
 #experienceDisplayList, #educationDisplayList{
   list-style-type: none;
+  padding: 0;
 }
 
 

@@ -256,9 +256,26 @@ function App() {
       <div id="displayContainer">
       <div id="personalDetailsDisplay">
           <h1>{personalDetailValue.name}</h1>
-          <h3>{personalDetailValue.email}</h3>
-          <h3>{personalDetailValue.phone}</h3>
-          <h3>{personalDetailValue.address}</h3> 
+          <div id="personalDetailContainer">
+            <h3>
+              {personalDetailValue.email ? (
+              <i className="fa-solid fa-envelope"></i>
+              ): ("")}
+              {personalDetailValue.email}
+            </h3>
+            <h3>
+              {personalDetailValue.phone ? (
+              <i className="fa-solid fa-phone"></i>
+              ): ("")}
+              {personalDetailValue.phone}
+            </h3>
+            <h3>
+              {personalDetailValue.address ? (
+              <i className="fa-solid fa-location-dot"></i>
+              ): ("")}
+              {personalDetailValue.address}
+            </h3> 
+          </div>
       </div> 
 
       <div id="educationDisplay">
