@@ -26,10 +26,15 @@ function App() {
   const [educationLines, changeEducationLines] = useState([]);
 
   //open-close education tab
-  const [educationTabActive, setIsActive] = useState(false);
+  const [tabActive, setActive] = useState(0);
 
-  function educationTabToggle(){
-      setIsActive(!educationTabActive)
+  function tabToggle(index){
+    //if activeTab = 0, none of them are open, if 1, education open. if 2, experience open
+    setActive(index)
+    //if the user clicked on the same tab twice (education, experience), close the tab
+    if (index === tabActive){
+      setActive(0)
+    }
   }
 
 
@@ -114,34 +119,63 @@ function App() {
       <br /><br />
       </div>
       <div id="educationInput">
+        {/* toggle isActive boolean on click */} 
+        <h2 onClick ={() =>tabToggle(1)} >Education</h2>
 
-      {/* toggle isActive boolean on click */} 
-      <h2 onClick ={educationTabToggle} >Education</h2>
+        {tabActive ===1 && /* showing this part only if isActive is true */
+        /* react expects a single child within the ornary (if) operator, so we are wrapping this up with a div */
+          <div>
+          {/* show the list of education lines that have been added by the user */}
+          {educationLines.map(education => 
+          <li className='educationLinesLi'
+          onClick = {() => selectEducation(education.school)} 
+          key={education.school}>
+          <h3>{education.school}</h3>
+          {/* delete button */}
+          <button onClick = {() => deleteEducation(education.school)}>X</button>
+          </li>
+          )}
+          <EducationInput 
+            degree = {educationValue.degree}
+            school = {educationValue.school}
+            startDate = {educationValue.startDate}
+            endDate = {educationValue.endDate}
+            location =  {educationValue.location}
+            onChange = {educationChange} 
+            onSubmit = {educationFormSubmit} 
+            /> 
+            </div>
+         }
+      </div>
+      <div id="experienceInput">
+        {/* toggle isActive boolean on click */} 
+        <h2 onClick ={() =>tabToggle(2)} >Experience</h2>
 
-      {educationTabActive ? ( /* showing this part only if isActive is true */
-      /* react expects a single child within the ornary (if) operator, so we are wrapping this up with a div */
-        <div>
-        {/* show the list of education lines that have been added by the user */}
-        {educationLines.map(education => 
-        <li className='educationLinesLi'
-        onClick = {() => selectEducation(education.school)} 
-        key={education.school}>
-        <h3>{education.school}</h3>
-        {/* delete button */}
-        <button onClick = {() => deleteEducation(education.school)}>X</button>
-        </li>
-        )}
-        <EducationInput 
-          degree = {educationValue.degree}
-          school = {educationValue.school}
-          startDate = {educationValue.startDate}
-          endDate = {educationValue.endDate}
-          location =  {educationValue.location}
-          onChange = {educationChange} 
-          onSubmit = {educationFormSubmit} 
-          /> 
-          </div>
-      ) : ("")}
+        {tabActive ===2 &&/* This is an inline if operator: https://legacy.reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
+        showing this part only if tabActive is 2 */
+        /* react expects a single child within the ornary (if) operator, so we are wrapping this up with a div */
+          <div>
+          {/* show the list of education lines that have been added by the user */}
+          {educationLines.map(education => 
+          <li className='educationLinesLi'
+          onClick = {() => selectEducation(education.school)} 
+          key={education.school}>
+          <h3>{education.school}</h3>
+          {/* delete button */}
+          <button onClick = {() => deleteEducation(education.school)}>X</button>
+          </li>
+          )}
+          <EducationInput 
+            degree = {educationValue.degree}
+            school = {educationValue.school}
+            startDate = {educationValue.startDate}
+            endDate = {educationValue.endDate}
+            location =  {educationValue.location}
+            onChange = {educationChange} 
+            onSubmit = {educationFormSubmit} 
+            /> 
+            </div>
+         }
       </div>
       <div id="personalDetailsDisplay">
           <h1>{personalDetailValue.name}</h1>

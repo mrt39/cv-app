@@ -32,6 +32,12 @@ body {
   margin: 20px;
 }
 
+#experienceInput {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: 20px;
+}
+
 .educationLinesLi{
   display: flex;
   border: 1px black solid;
