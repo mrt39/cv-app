@@ -35,11 +35,21 @@ h1{
 
 h3{
   margin-top: 5px;
-  margin-bottom: 20px;
 }
 
 h5{
   margin: 10px;
+}
+
+.deleteBtnContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.fa-trash{
+  cursor: pointer;
 }
 
 #personalDetailsInput{

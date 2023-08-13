@@ -201,7 +201,10 @@ function App() {
           key={education.school}>
           <h5>{education.school}</h5>
           {/* delete button */}
-          <button onClick = {() => deleteEducation(education.school)}>X</button>
+          <div className="deleteBtnContainer">
+            <i onClick = {() => deleteEducation(education.school)}
+            className="fa fa-trash"></i>
+          </div>
           </li>
           )}
           <EducationInput 
@@ -236,8 +239,10 @@ function App() {
           key={experience.company}>
           <h5>{experience.company}</h5>
           {/* delete button */}
-          <i onClick = {() => deleteExperience(experience.company)}
-          className="fa fa-trash"></i>
+          <div className="deleteBtnContainer">
+            <i onClick = {() => deleteExperience(experience.company)}
+            className="fa fa-trash"></i>
+          </div>
           </li>
           )}
           <ExperienceInput 
@@ -253,6 +258,8 @@ function App() {
             </div>
          </div>
       </div>
+
+      {/* CV DISPLAY PAGE */}
       <div id="displayContainer">
       <div id="personalDetailsDisplay">
           <h1>{personalDetailValue.name}</h1>
