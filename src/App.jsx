@@ -38,17 +38,6 @@ function App() {
   //a state for the experience info user provides
   const [experienceLines, changeExperienceLines] = useState([]);
 
-  //open-close education and experience tabs
-  const [tabActive, setActive] = useState(0);
-
-  function tabToggle(index){
-    //if activeTab = 0, none of them are open, if 1, education open. if 2, experience open
-    setActive(index)
-    //if the user clicked on the same tab twice (education, experience), close the tab
-    if (index === tabActive){
-      setActive(0)
-    }
-  }
 
 
   //change function for states
@@ -192,20 +181,25 @@ function App() {
         onChange = {personalDetailChange} /> 
       <br /><br />
       </div>
-      <div id="educationInput">
-        {/* toggle isActive boolean on click */} 
-        <h2 onClick ={() =>tabToggle(1)} >Education</h2>
 
-        {tabActive ===1 && /* This is an inline if operator: https://legacy.reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator
-        showing this part only if tabActive is 1 */
-        /* react expects a single child within the ornary (if) operator, so we are wrapping this up with a div */
+
+      <div id="educationInput">
+        {/* collapsible dropdown button taken from bootstrap - sidebars */}
+        <button 
+        className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#education-collapse" 
+        aria-expanded="false">
+        <h3>Education</h3>
+        </button>
+        <div className="collapse" id="education-collapse"> 
           <div>
           {/* show the list of education lines that have been added by the user */}
           {educationLines.map(education => 
           <li className='educationLinesLi'
           onClick = {() => selectEducation(education.school)} 
           key={education.school}>
-          <h3>{education.school}</h3>
+          <h5>{education.school}</h5>
           {/* delete button */}
           <button onClick = {() => deleteEducation(education.school)}>X</button>
           </li>
@@ -220,24 +214,30 @@ function App() {
             onSubmit = {educationFormSubmit} 
             /> 
             </div>
-         }
+         </div>
+        
       </div>
-      <div id="experienceInput">
-        {/* toggle isActive boolean on click */} 
-        <h2 onClick ={() =>tabToggle(2)} >Experience</h2>
 
-        {tabActive ===2 &&/* 
-        showing this part only if tabActive is 2 */
-        /* react expects a single child within the ornary (if) operator, so we are wrapping this up with a div */
+      <div id="experienceInput">
+        {/* collapsible dropdown button taken from bootstrap - sidebars */}
+        <button 
+        className="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#experience-collapse" 
+        aria-expanded="false">
+        <h3>Experience</h3>
+        </button>
+        <div className="collapse" id="experience-collapse"> 
           <div>
           {/* show the list of education lines that have been added by the user */}
           {experienceLines.map(experience => 
           <li className='experienceLinesLi'
           onClick = {() => selectExperience(experience.company)} 
           key={experience.company}>
-          <h3>{experience.company}</h3>
+          <h5>{experience.company}</h5>
           {/* delete button */}
-          <button onClick = {() => deleteExperience(experience.company)}>X</button>
+          <i onClick = {() => deleteExperience(experience.company)}
+          className="fa fa-trash"></i>
           </li>
           )}
           <ExperienceInput 
@@ -251,60 +251,77 @@ function App() {
             onSubmit = {experienceFormSubmit} 
             /> 
             </div>
-         }
+         </div>
       </div>
       <div id="displayContainer">
       <div id="personalDetailsDisplay">
           <h1>{personalDetailValue.name}</h1>
           <div id="personalDetailContainer">
-            <h3>
+            <p className='personalDetailText'>
               {personalDetailValue.email ? (
               <i className="fa-solid fa-envelope"></i>
               ): ("")}
               {personalDetailValue.email}
-            </h3>
-            <h3>
+            </p>
+            <p className='personalDetailText'>
               {personalDetailValue.phone ? (
               <i className="fa-solid fa-phone"></i>
               ): ("")}
               {personalDetailValue.phone}
-            </h3>
-            <h3>
+            </p>
+            <p className='personalDetailText'>
               {personalDetailValue.address ? (
               <i className="fa-solid fa-location-dot"></i>
               ): ("")}
               {personalDetailValue.address}
-            </h3> 
+            </p> 
           </div>
       </div> 
 
       <div id="educationDisplay">
+        {educationLines.length > 0 && 
+          <div className='cvStrip'>
+            <p className='stripText'>Education</p>
+          </div>
+        }
         <ul id="educationDisplayList">
           {educationLines.map(education => 
           <li key={education.school}>
-            {education.degree}, {education.school}
-            <br />
-            {education.startDate}-{education.endDate}
-            <br />
-            {education.location}
-            <br />
+            <div className='displayLineBigContainer'>
+              <div className='displayLineFirstContainer'>
+              <p className="topPara">{education.startDate}-{education.endDate}</p>
+              <p>{education.location}</p>
+              </div>
+              <div className='displayLineSecondContainer'>
+              <p className="topPara"><b>{education.school}</b></p>
+              <p>{education.degree}</p> 
+              </div>
+            </div>
           </li>
           )}
         </ul>
       </div> 
 
       <div id="experienceDisplay">
+        {experienceLines.length > 0 && 
+            <div className='cvStrip'>
+              <p className='stripText'>Experience</p>
+            </div>
+        }
         <ul id="experienceDisplayList">
           {experienceLines.map(experience => 
           <li key={experience.company}>
-            {experience.company}, {experience.title}
-            <br />
-            {experience.startDate}-{experience.endDate}
-            <br />
-            {experience.location}
-            <br />
-            {experience.description}
-            <br />
+            <div className='displayLineBigContainer'>
+              <div className='displayLineFirstContainer'> 
+                <p className="topPara">{experience.startDate}-{experience.endDate}</p>
+                <p>{experience.location}</p>
+              </div>
+              <div className='displayLineSecondContainer'> 
+              <p className="topPara"><b>{experience.company}</b></p>
+              <p className="topPara">{experience.title}</p>
+              <p>{experience.description}</p>
+              </div>
+            </div>
           </li>
           )}
         </ul>

@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  
+  height: 100%;
+  width: 100%;  
+  background-color: ghostwhite;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 #root {
@@ -22,37 +25,76 @@ body {
 
 #app{
   display: grid;
-  grid-template-columns: 5fr 1fr 5fr;
+  grid-template-columns: 2fr 2fr 800px 2fr;
+}
+
+h1{
+  padding-top: 30px;
+  margin-bottom: 10px;
+}
+
+h3{
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+h5{
+  margin: 10px;
+}
+
+#personalDetailsInput{
+  grid-column-start: 2;
+  border: 1px ;
+  background-color: white;
+  border-radius: 15px;
+  margin: 20px;
 }
 
 #educationInput {
+  grid-column-start: 2;
   grid-row-start: 2;
   grid-row-end: 3;
   margin: 20px;
+  border: 1px ;
+  background-color: white;
+  border-radius: 15px;
 }
 
 #experienceInput {
+  grid-column-start: 2;
   grid-row-start: 3;
   grid-row-end: 4;
   margin: 20px;
+  border: 1px ;
+  background-color: white;
+  border-radius: 15px;
 }
 
 .educationLinesLi{
   display: flex;
-  border: 1px black solid;
+  border: 1px lightblue solid;
   margin: 3px;
   justify-content: space-evenly;
+  border-radius: 13px;
+  background-color: aliceblue;
 }
 
 .experienceLinesLi{
   display: flex;
-  border: 1px black solid;
+  border: 1px lightblue solid;
   margin: 3px;
   justify-content: space-evenly;
+  border-radius: 13px;
+  background-color: aliceblue;
 }
 
 #displayContainer{
   grid-column-start: 3;
+  grid-row-start: 1;
+  grid-row-end: 5;
+  height: 1120px;
+  margin: 20px;
+  background-color: white;
 }
 
 #personalDetailContainer{
@@ -60,37 +102,110 @@ body {
   justify-content: space-evenly;
 }
 
-h1{
-  padding-top: 30px;
-  margin-bottom: 10px;
-}
+
 i{
   margin: 5px;
 }
 #personalDetailsDisplay {
-  margin: 20px;
   background-color: #0e374e;
   color: white;
 }
 
 #educationDisplay {
-
-  margin: 20px;
+  margin: 40px;
 }
 
 #experienceDisplay {
-
-  margin: 20px;
+  margin: 40px;
 }
 
 #experienceDisplayList, #educationDisplayList{
   list-style-type: none;
   padding: 0;
+  text-align: left;
+
+}
+
+.displayLineBigContainer{
+  display: flex;
+}
+
+.displayLineSecondContainer{
+  margin-left: 30px;
+  margin-top: 0px;
+}
+
+.form-control{
+  display: inline;
+  background-color: ghostwhite;
+  width: 90%;
+}
+
+.topPara{
+  margin-block: 0;
+}
+
+label{
+  font-weight: 600;
+}
+
+.cvStrip{
+  background-color: ghostwhite;
+}
+
+.stripText{
+  color: #0e374e;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.personalDetailText{
+  font-size: 20px;
+  margin: 15px;
 }
 
 
 
 
 
+/* BOOTSTRAP STYLES */
+.dropdown-toggle { outline: 0; }
+
+.btn-toggle {
+  padding: .25rem .5rem;
+  font-weight: 600;
+  color: var(--bs-emphasis-color);
+  background-color: transparent;
+}
+.btn-toggle:hover,
+.btn-toggle:focus {
+  color: rgba(var(--bs-emphasis-color-rgb), .85);
+
+}
+
+.btn-toggle::before {
+  width: 1.25em;
+  line-height: 0;
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  transition: transform .35s ease;
+  transform-origin: .5em 50%;
+}
+
+[data-bs-theme="dark"] .btn-toggle::before {
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%28255,255,255,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+}
+
+.btn-toggle[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+.btn-toggle-nav a {
+  padding: .1875rem .5rem;
+  margin-top: .125rem;
+  margin-left: 1.25rem;
+}
 
 
+.scrollarea {
+  overflow-y: auto;
+}

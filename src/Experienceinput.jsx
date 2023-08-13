@@ -6,6 +6,8 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <label>Company Name </label>
             <br />
             <input
+                className="form-control"
+                placeholder="Company Name"
                 type="text"
                 name="company"
                 value={company}
@@ -15,6 +17,8 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <label>Position Title</label>
             <br />
             <input
+                className="form-control"
+                placeholder="Position Title"
                 type="text"
                 name="title"
                 value={title}
@@ -24,6 +28,8 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <label>Start Date</label>
             <br />
             <input
+                className="form-control"
+                placeholder="Start Date"
                 type="text"
                 name="startDate"
                 value={startDate}
@@ -33,6 +39,8 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <label>End Date</label>
             <br />
             <input
+                className="form-control"
+                placeholder="End Date"
                 type="text"
                 name="endDate"
                 value={endDate}
@@ -42,6 +50,8 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <label>Location</label>
             <br />
             <input
+                className="form-control"
+                placeholder="City, Country"
                 type="text"
                 name="location"
                 value={location}
@@ -51,6 +61,8 @@ function ExperienceInputs ({onChange, onSubmit, company, title, startDate, endDa
             <label>Description</label>
             <br />
             <input
+                className="form-control"
+                placeholder="Description"
                 type="text"
                 name="description"
                 value={description}

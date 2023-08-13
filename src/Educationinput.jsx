@@ -6,6 +6,8 @@ function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDat
             <label>Degree </label>
             <br />
             <input
+                className="form-control"
+                placeholder="Degree/Field of Study"
                 type="text"
                 name="degree"
                 value={degree}
@@ -15,6 +17,8 @@ function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDat
             <label>School</label>
             <br />
             <input
+                className="form-control"
+                placeholder="School/University"
                 type="text"
                 name="school"
                 value={school}
@@ -24,6 +28,8 @@ function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDat
             <label>Start Date</label>
             <br />
             <input
+                className="form-control"
+                placeholder="Start Date"
                 type="text"
                 name="startDate"
                 value={startDate}
@@ -33,6 +39,8 @@ function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDat
             <label>End Date</label>
             <br />
             <input
+                className="form-control"
+                placeholder="End Date"
                 type="text"
                 name="endDate"
                 value={endDate}
@@ -42,6 +50,8 @@ function EducationInputs ({onChange, onSubmit, degree, school, startDate, endDat
             <label>Location</label>
             <br />
             <input
+                className="form-control"
+                placeholder="City, Country"
                 type="text"
                 name="location"
                 value={location}

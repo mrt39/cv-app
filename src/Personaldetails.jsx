@@ -1,10 +1,12 @@
 function PersonalDetailsInputs ({onChange, name, email, phone, address}) {
     return (
     <>
-    <h2>Personal Details</h2>
+    <h3>Personal Details</h3>
         <label>Full Name </label>
         <br />
-          <input
+          <input 
+            className="form-control"
+            placeholder="Full Name"
             type="text"
             name="name"
             value={name}
@@ -14,6 +16,8 @@ function PersonalDetailsInputs ({onChange, name, email, phone, address}) {
         <label>E-mail</label>
         <br />
           <input
+            className="form-control"
+            placeholder="E-mail"
             type="email"
             name="email"
             value={email}
@@ -23,6 +27,8 @@ function PersonalDetailsInputs ({onChange, name, email, phone, address}) {
         <label>Phone Number</label>
         <br />
           <input
+            className="form-control"
+            placeholder="Phone Number"
             type="tel"
             name="phone"
             value={phone}
@@ -32,6 +38,8 @@ function PersonalDetailsInputs ({onChange, name, email, phone, address}) {
         <label>Address</label>
         <br />
           <input
+            className="form-control"
+            placeholder="City, Country"
             type="tel"
             name="address"
             value={address}
